@@ -29,7 +29,7 @@ NodeJS installed on your system (14 or higher) -\*\* [NodeJS](https://nodejs.org
 
 Install node_modules:
 
-````
+```
 
 npm install
 
@@ -60,4 +60,3 @@ To run Docker container use the following command:
 docker run -p 3000:3000 book-app-frontend
 
 ```
-````
