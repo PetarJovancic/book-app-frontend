@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { Card, Form, Button } from 'react-bootstrap';
 
 function Login() {
@@ -10,7 +10,7 @@ function Login() {
 	async function loginUser(e) {
 		e.preventDefault();
 
-		const response = await fetch('http://localhost:1337/api/users/login', {
+		const response = await fetch(`${process.env.REACT_APP_URL}/login`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -76,6 +76,9 @@ function Login() {
 					</Form>
 				</Card.Body>
 			</Card>
+			<div className="w-100 text-center mt-2">
+				Create Admin acount? <Link to="/admin/register">Register Admin</Link>
+			</div>
 		</>
 	);
 }

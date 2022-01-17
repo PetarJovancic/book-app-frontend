@@ -34,7 +34,7 @@ const Dashboard = () => {
 	}, [navigate]);
 
 	async function findAll() {
-		const response = await fetch('http://localhost:1337/api/users/all-users', {
+		const response = await fetch(`${process.env.REACT_APP_URL}/all-users`, {
 			headers: {
 				authorization: localStorage.getItem('token'),
 			},
@@ -59,7 +59,7 @@ const Dashboard = () => {
 		try {
 			if (searchName) {
 				const response = await fetch(
-					`http://localhost:1337/api/users/search?name=${searchName}`,
+					`${process.env.REACT_APP_URL}/search?name=${searchName}`,
 					{
 						headers: {
 							authorization: localStorage.getItem('token'),

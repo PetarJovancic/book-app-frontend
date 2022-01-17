@@ -24,7 +24,7 @@ function UserPage() {
 	async function addBook(event) {
 		event.preventDefault();
 
-		const response = await fetch('http://localhost:1337/api/users/add-book', {
+		const response = await fetch(`${process.env.REACT_APP_URL}/add-book`, {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json',
@@ -36,6 +36,7 @@ function UserPage() {
 		});
 
 		const data = await response.json();
+
 		setShowAdded(true);
 		setTimeout(function () {
 			setShowAdded(false);
@@ -45,19 +46,16 @@ function UserPage() {
 	async function deleteBooks(event) {
 		event.preventDefault();
 
-		const response = await fetch(
-			'http://localhost:1337/api/users/delete-book',
-			{
-				method: 'PUT',
-				headers: {
-					'Content-Type': 'application/json',
-					authorization: localStorage.getItem('token'),
-				},
-				body: JSON.stringify({
-					books,
-				}),
-			}
-		);
+		const response = await fetch(`${process.env.REACT_APP_URL}/delete-book`, {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+				authorization: localStorage.getItem('token'),
+			},
+			body: JSON.stringify({
+				books,
+			}),
+		});
 
 		const data = await response.json();
 		setShowDelete(true);

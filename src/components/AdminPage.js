@@ -31,23 +31,20 @@ function AdminPage() {
 	async function addUser(event) {
 		event.preventDefault();
 
-		const response = await fetch(
-			'http://localhost:1337/api/users/register-user',
-			{
-				method: 'POST',
-				headers: {
-					authorization: localStorage.getItem('token'),
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({
-					name,
-					email,
-					password,
-					username,
-					books,
-				}),
-			}
-		);
+		const response = await fetch(`${process.env.REACT_APP_URL}/register-user`, {
+			method: 'POST',
+			headers: {
+				authorization: localStorage.getItem('token'),
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				name,
+				email,
+				password,
+				username,
+				books,
+			}),
+		});
 
 		const data = await response.json();
 		setShowAdded(true);
@@ -59,7 +56,7 @@ function AdminPage() {
 	async function editUser(event) {
 		event.preventDefault();
 
-		const response = await fetch('http://localhost:1337/api/users/edit', {
+		const response = await fetch(`${process.env.REACT_APP_URL}/edit`, {
 			method: 'PUT',
 			headers: {
 				authorization: localStorage.getItem('token'),
@@ -83,19 +80,16 @@ function AdminPage() {
 	async function deleteUser(event) {
 		event.preventDefault();
 
-		const response = await fetch(
-			'http://localhost:1337/api/users/delete-user',
-			{
-				method: 'DELETE',
-				headers: {
-					'Content-Type': 'application/json',
-					authorization: localStorage.getItem('token'),
-				},
-				body: JSON.stringify({
-					username,
-				}),
-			}
-		);
+		const response = await fetch(`${process.env.REACT_APP_URL}/delete-user`, {
+			method: 'DELETE',
+			headers: {
+				'Content-Type': 'application/json',
+				authorization: localStorage.getItem('token'),
+			},
+			body: JSON.stringify({
+				username,
+			}),
+		});
 
 		const data = await response.json();
 
